@@ -7,13 +7,15 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // vue插件
 let VuePlugin = require('vue-loader/lib/plugin')
 
+let path =require('path')
 
 module.exports = {
   resolve: {
     extensions: ['.js','.css','.vue','.styl'],
     alias: {
-      "@css": "../css"
-    }
+      "@common":path.resolve(__dirname,"src/common"),
+      "@comp":path.resolve(__dirname,"src/components"),
+    } 
   },
 
   entry: './src/main.js',
