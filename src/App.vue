@@ -3,7 +3,7 @@
     <mheader />
      <tab />
      <!-- 路由渲染出口 -->
-     <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 <script>

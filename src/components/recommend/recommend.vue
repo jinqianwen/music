@@ -2,7 +2,11 @@
   <div class="recommend">
     <div class="recommend-content">
       <!-- 轮播图 -->
-      <div class="slider-wrapper"></div>
+      <div class="slider-wrapper">
+        <Slider :pics="slider"></Slider>
+        <!-- 传递的数据是 base/slider/slider.vue的数据 -->
+
+      </div>
       <!-- 热门歌曲列表 -->
       <div class="recommend-list">
         <h1 class="list-title">热门歌曲推荐</h1>
@@ -13,6 +17,29 @@
 </template>
 
 <script>
+import Slider from '../../base/slider/slider'
+import recomm from '../../api/recommend'
+export default {
+  data(){
+    return  {
+    slider:[1,2,3,4]}
+  },
+  created() {
+    this._getSlider()
+    
+  },
+  methods: {
+    _getSlider(){
+      recomm.getSlider
+
+    }
+    
+  },
+
+  components:{
+    Slider
+  }
+}
 </script>
 
 <style scoped lang="stylus" >
