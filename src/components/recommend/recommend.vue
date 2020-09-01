@@ -4,40 +4,42 @@
       <!-- 轮播图 -->
       <div class="slider-wrapper">
         <Slider :pics="slider"></Slider>
-        <!-- 传递的数据是 base/slider/slider.vue的数据 -->
-
       </div>
       <!-- 热门歌曲列表 -->
       <div class="recommend-list">
         <h1 class="list-title">热门歌曲推荐</h1>
-        <ul></ul>
+        <RecommList />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Slider from '../../base/slider/slider'
+import Slider from '../../base/slider/Slider'
 import recomm from '../../api/recommend'
+import RecommList from './recommend-list'
+
 export default {
-  data(){
-    return  {
-    slider:[1,2,3,4]}
+  data() {
+    return {
+      slider: []
+    }
   },
   created() {
     this._getSlider()
-    
   },
   methods: {
     _getSlider(){
-      recomm.getSlider
-
+      recomm.getSlider().then(data=>{
+        this.slider = data
+      }).catch(err=>{
+        console.log(err)
+      })
     }
-    
   },
-
-  components:{
-    Slider
+  components: {
+    Slider,
+    RecommList
   }
 }
 </script>
