@@ -1,30 +1,27 @@
 <template>
   <div>
-    <ul class="recommend-list">
+    <ul>
       <li v-for="(d,i) in list" :key="i" class="item">
-         <div class="p-left"></div>
-         <div class="p-right"></div>
-         <div class="icon">
-           <img :src="d.imgurl" alt="" class="recom-img">
-         </div>
-         <div class="text">
-           <div class="name">
-             {{d.creator.name}}
-
-           </div>
-           <div class="desc">
-             {{d.dissname}}
-
-           </div>
-         </div>
+        <div class="p-left"></div>
+        <div class="p-right"></div>
+        <div class="icon">
+          <img :src="d.imgurl" alt="" class="recom-img">
+        </div>
+        <div class="text">
+          <div class="name">
+            {{d.creator.name}}
+          </div>
+          <div class="desc">
+            {{d.dissname}}
+          </div>
+        </div>
       </li>
     </ul>
   </div>
 </template>
-  
+
 <script>
 import recomm from '../../api/recommend'
-
 export default {
   data() {
     return {
@@ -34,9 +31,9 @@ export default {
   methods: {
     _getDiss(){
       recomm.getDiss().then(data=>{
-         this.list=data
+        this.list = data
       }).catch(err=>{
-
+        console.log(err)
       })
     }
   },
@@ -46,11 +43,12 @@ export default {
 }
 </script>
 
+
 <style lang="stylus" scoped>
   @import '~@common/stylus/variable'
   .recommend-list
     height 100%
-    overflow hidden
+    overflow hidden 
     position relative
     .list-title
       height 65px

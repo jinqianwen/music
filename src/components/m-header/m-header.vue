@@ -1,6 +1,6 @@
 <template>
   <div class="m-header">
-    <h1 class="text">Vue - Music</h1>
+    <h1 class="text">QQ - Music</h1>
   </div>
 </template>
 

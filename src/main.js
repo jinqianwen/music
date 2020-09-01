@@ -13,6 +13,7 @@ import './common/stylus/index'
 import {Swipe,SwipeItem} from 'vant';
 import 'vant/lib/swipe/style'
 import 'vant/lib/swipe-item/style'
+
 Vue.use(Swipe)
 Vue.use(SwipeItem)
 

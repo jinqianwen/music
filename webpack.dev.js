@@ -17,7 +17,9 @@ module.exports = merge(base, {
     hot: true,
     proxy: [{//反向代理
      context: ["/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg",
-              "/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg"],
+              "/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg",
+              "/v8/fcg-bin/v8.fcg"
+            ],
         target: "https://c.y.qq.com/",
         changeOrigin: true,
         headers:{

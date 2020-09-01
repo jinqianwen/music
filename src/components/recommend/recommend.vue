@@ -6,10 +6,11 @@
         <Slider :pics="slider"></Slider>
       </div>
       <!-- 热门歌曲列表 -->
-      <div class="recommend-list">
+      <Scroll class="recommend-list">
         <h1 class="list-title">热门歌曲推荐</h1>
-        <RecommList />
-      </div>
+      
+       <Recommendlist />
+      </Scroll>
     </div>
   </div>
 </template>
@@ -17,16 +18,19 @@
 <script>
 import Slider from '../../base/slider/Slider'
 import recomm from '../../api/recommend'
-import RecommList from './recommend-list'
+import Recommendlist from '../recommend/recommend-list'
+import Scroll from '../../base/scroll/scroll.vue'
 
 export default {
   data() {
     return {
-      slider: []
+      slider: [],
+      list:[]
     }
   },
   created() {
     this._getSlider()
+   
   },
   methods: {
     _getSlider(){
@@ -35,11 +39,13 @@ export default {
       }).catch(err=>{
         console.log(err)
       })
-    }
+    },
+  
   },
   components: {
     Slider,
-    RecommList
+Recommendlist,
+    Scroll
   }
 }
 </script>
