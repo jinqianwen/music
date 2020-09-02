@@ -1,6 +1,6 @@
 <template>
   <div class="recommend">
-    <scroll ref="scroll" class="recommend-content">
+    <Scroll ref="scroll" class="recommend-content">
       <div>
         <!-- 轮播图 -->
         <div class="slider-wrapper">
@@ -9,17 +9,18 @@
         <!-- 热门歌曲列表 -->
         <div class="recommend-list">
           <h1 class="list-title">热门歌曲推荐</h1>
-          <Recommendlist />
+         
+         <Recommendlist />
         </div>
       </div>
-    </scroll>
+    </Scroll>
   </div>
 </template>
 
 <script>
 import Slider from '../../base/slider/Slider'
 import recomm from '../../api/recommend'
-import Recommendlist from '../recommend/recommend-list'
+import Recommendlist from './recommend-list'
 import Scroll from '../../base/scroll/scroll.vue'
 
 export default {
@@ -45,7 +46,7 @@ export default {
   },
   components: {
     Slider,
-Recommendlist,
+    Recommendlist,
     Scroll
   }
 }

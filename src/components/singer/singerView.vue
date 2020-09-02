@@ -1,12 +1,12 @@
 <template>
-  <scroll class="listview">
+  <scroll class="listview" ref="listview">
     <ul>
       <!-- 歌手分类列表 -->
       <li class="list-group" v-for="(singer,idx) in singerList" :key="idx">
         <h2 class="list-group-title">{{singer.title}}</h2>
         <!-- 歌手列表 -->
         <ul>
-          <li class="list-group-item" v-for="(item,ix) in singer.singers" :key="ix">
+          <li class="list-group-item" v-for="(item,ix) in singer.singers" :key="ix" @click="select(item)">
             <img :src="item.avatar" class="avatar">
             <span class="name">{{item.fname}}</span>
           </li>
@@ -20,12 +20,14 @@
         </li>
       </ul>
     </div>
+
   </scroll>
+
 </template>
 
 <script>
 import {getSingerList} from '../../api/singer'
-import Scroll from '../../base/scroll/Scroll'
+import Scroll from '../../base/scroll/scroll'
 
 export default {
   data(){
@@ -51,8 +53,15 @@ export default {
       // i代表的就是对应字母元素的下标
       // 获取歌手分类列表
       let lis=document.querySelectorAll('li.list-group')
-      Scroll.Recommendlist(lis[i])
+      this.$refs.listview.scrollToElement(lis[i])
       
+    },
+    select(singer){
+      //点击某个歌手显示对应的详情页
+      console.log(singer)
+      //通过自定义事件派发数据过去 事件名select，数据singer
+      //将singer(id，fname,fid)传递给singer组件
+      this.$emit("select",singer)
     }
   },
   created() {

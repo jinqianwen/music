@@ -15,10 +15,12 @@ module.exports = merge(base, {
     },
     historyApiFallback:true,
     hot: true,
-    proxy: [{//反向代理
+    proxy: [
+      {//反向代理
      context: ["/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg",
               "/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg",
-              "/v8/fcg-bin/v8.fcg"
+              "/v8/fcg-bin/v8.fcg",
+              '/v8/fcg-bin/fcg_v8_singer_track_cp.fcg'
             ],
         target: "https://c.y.qq.com/",
         changeOrigin: true,
@@ -26,6 +28,12 @@ module.exports = merge(base, {
           referer:"https://c.y.qq.com/",
           host:'c.y.qq.com'
         }
-    }]
+    }
+    ],
+    before(app){//是基于express环境
+      app.get('/singer/:id',(req,res)=>{
+        res.redirect('/singer')
+      })
+    }
   }
 })
