@@ -1,57 +1,64 @@
 <template>
-  <Scroll class="listview">
+  <scroll class="listview">
     <ul>
-         <!--歌手类表 -->
+      <!-- 歌手分类列表 -->
       <li class="list-group" v-for="(singer,idx) in singerList" :key="idx">
         <h2 class="list-group-title">{{singer.title}}</h2>
-        <!--歌手详细信息类表 -->
+        <!-- 歌手列表 -->
         <ul>
-           <li v-for="(item,ix) in singer.singers" :key="ix" class="list-group-item">
-             <img :src= "item.avatar" alt="" class="avatar">
-             <span class="name">{{item.fname}}</span>
-           </li>
+          <li class="list-group-item" v-for="(item,ix) in singer.singers" :key="ix">
+            <img :src="item.avatar" class="avatar">
+            <span class="name">{{item.fname}}</span>
+          </li>
         </ul>
-    
       </li>
     </ul>
     <div class="list-shortcut">
-
       <ul>
-        <li v-for="(key,i) in getIndex" :key="i">
+        <li v-for="(key,i) in getIndex" :key="i" class="item" @click="scrollTo(i)">
           {{key}}
         </li>
       </ul>
     </div>
-    
-  </Scroll>
+  </scroll>
 </template>
+
 <script>
-import {getSingerList} from '../../api/singer.js'
-import Scroll from '../../base/scroll/scroll'
+import {getSingerList} from '../../api/singer'
+import Scroll from '../../base/scroll/Scroll'
+
 export default {
   data(){
     return {
-      singerList:[]
+      singerList: []
     }
   },
   computed: {
     getIndex(){
-      return this.singerList.map((val,idx)=>{
-          return val.title[0]
+      return this.singerList.map(val=>{
+        return val.title[0]
       })
     }
   },
   methods: {
     _getSingerList(){
       getSingerList().then(data=>{
-        this.singerList=data
+        this.singerList = data
       })
+    },
+    scrollTo(i){
+      // 点击字母滚动到对应字母的元素
+      // i代表的就是对应字母元素的下标
+      // 获取歌手分类列表
+      let lis=document.querySelectorAll('li.list-group')
+      Scroll.Recommendlist(lis[i])
+      
     }
   },
   created() {
     this._getSingerList()
   },
-  components:{
+  components: {
     Scroll
   }
 }
