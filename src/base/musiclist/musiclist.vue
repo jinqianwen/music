@@ -125,6 +125,7 @@ export default {
     height 100%
     background #fff
   .list
+    overflow:hidden
     position fixed
     top 0
     bottom 0

@@ -23,11 +23,7 @@ function getSlider(){
   }).catch(err=>{
    return Promise.reject(err) 
   })
-  /* reqData(url,data,{param: 'mycallback'}).then(data=>{
-    console.log(data.data.slider)
-  }).catch(err=>{
-    console.log(err)
-  }) */
+
 }
 
 //获取歌单列表
@@ -60,7 +56,30 @@ function getDiss(){
       return Promise.reject(err) 
      })
 }
+// 获取某个歌单里的歌曲列表
+function getDissSongs(dissid){
+  return axios.get("/getDiss",{
+    params: {dissid}
+  }).then(res=>{
+    let list = res.data[0].songlist
+    let data = []
+    list.forEach(val=>{
+      let {
+        album:{name:albumname},
+        singer,
+        name: songname,
+        mid
+      } = val
+      data.push({albumname,singer,songname,mid})
+    })
+    return Promise.resolve(data)
+  }).catch(err=>{
+    return Promise.reject(err)
+  })
+}
+
 export default {
   getSlider,
-  getDiss
+  getDiss,
+  getDissSongs
 }
